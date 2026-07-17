@@ -1814,10 +1814,9 @@ a.parchive-card:hover .parchive-card__cap strong { color: var(--gold); }
    ========================================================= */
 .popup-layer {
   position: fixed;
-  top: 96px; left: 24px;
+  top: 96px; left: 24px; right: 24px;
   z-index: 90;
   display: flex; gap: 16px; align-items: flex-start;
-  max-width: calc(100vw - 48px);
   max-height: calc(100vh - 140px);
   pointer-events: none;
 }
@@ -1832,6 +1831,10 @@ a.parchive-card:hover .parchive-card__cap strong { color: var(--gold); }
   pointer-events: auto;
 }
 .popup[hidden] { display: none; }
+.popup--right { margin-left: auto; }
+@media (max-width: 900px) {
+  .popup--right { margin-left: 0; }
+}
 .popup__body { overflow-y: auto; }
 .popup__head { padding: 24px 26px 20px; }
 .popup__badge {
