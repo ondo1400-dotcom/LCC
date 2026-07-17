@@ -1384,14 +1384,7 @@ em.en {
   .poster-marquee .poster-card { width: 200px; border-radius: 10px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .poster-marquee__track { animation: none; }
-  .poster-marquee {
-    overflow-x: auto;
-    -webkit-mask-image: none;
-            mask-image: none;
-  }
-}
+/* 마키는 항상 자동 스크롤 (reduce-motion 예외 제거) */
 
 /* "How to apply" section reuses .process */
 
