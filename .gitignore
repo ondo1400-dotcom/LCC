@@ -1,0 +1,32 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.claude/
+.vscode/
+*.swp
+*.swo
+
+# Dependencies
+node_modules/
+
+# Archive (development reference only)
+_archive/
+
+# Local working files (already exist under assets/)
+/PROJECT_BRIEF.txt
+/replace_logo.py
+/world_map_backup.png
+/logo.png
+/world_map.png
+/styles.css
+/script.js
+/posters/
+# Source material (working files, not part of the site)
+세미나/
+원데이/
+멘토링/
+실사*.jpeg
+팝업*.jpeg
+메인.jpeg

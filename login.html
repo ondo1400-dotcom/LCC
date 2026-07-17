@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>로그인 — Life Code Company</title>
+  <meta name="description" content="Life Code Company 회원 로그인" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&family=Italiana&family=Italianno&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+
+  <!-- ============== HEADER (shared) ============== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="logo" aria-label="Life Code Company home">
+        <img src="assets/images/logo.png" alt="Life Code Company Logo" class="logo-img" />
+      </a>
+      <nav class="nav" aria-label="primary">
+        <ul>
+          <li class="nav__item">
+            <a class="nav__link" data-page="about.html" href="about.html">About</a>
+            <div class="nav__panel">
+              <a href="about.html#message">CEO Message</a>
+              <a href="about.html#mission">Mission &amp; Vision</a>
+              <a href="about.html#values">Core Values</a>
+              <a href="about.html#sdgs">Sustainability</a>
+              <a href="about.html#network">Global Network</a>
+            </div>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" data-page="method.html" href="method.html">Method</a>
+            <div class="nav__panel">
+              <a href="method.html#life">L.I.F.E Framework</a>
+              <a href="method.html#research">Research Approach</a>
+              <a href="method.html#process">Consulting Process</a>
+              <a href="method.html#pillars">Three Pillars</a>
+            </div>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" data-page="programs.html" href="programs.html">Programs</a>
+            <div class="nav__panel">
+              <a href="programs.html#archive">Program Archive</a>
+              <a href="programs.html#apply">How to Apply</a>
+            </div>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" data-page="insights.html" href="insights.html">Insights</a>
+            <div class="nav__panel">
+              <a href="insights.html#stories">Client Stories</a>
+              <a href="insights.html#articles">Life Code Company Insights</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <a href="contact.html" class="cta-pill">Contact <span aria-hidden="true">→</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav" hidden>
+      <div class="group"><strong>About</strong><a href="about.html">Overview</a><a href="about.html#message">CEO
+          Message</a><a href="about.html#values">Core Values</a><a href="about.html#sdgs">Sustainability</a><a
+          href="about.html#network">Global Network</a></div>
+      <div class="group"><strong>Method</strong><a href="method.html">Overview</a><a href="method.html#life">L.I.F.E
+          Framework</a><a href="method.html#process">Process</a></div>
+      <div class="group"><strong>Programs</strong><a href="programs.html">Overview</a><a
+          href="programs.html#archive">Program Archive</a><a href="programs.html#apply">How to Apply</a></div>
+      <div class="group"><strong>Insights</strong><a href="insights.html">Overview</a><a
+          href="insights.html#articles">Life Code Company Insights</a></div>
+      <div class="group"><strong>Contact</strong><a href="contact.html">Get in touch</a></div>
+    </div>
+  </header>
+
+  <!-- ============== PAGE HERO ============== -->
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <p class="breadcrumb"><a href="index.html">Home</a><i></i><span>Login</span></p>
+      <h1 class="page-hero__title"><em>Life Code Company</em> 로그인</h1>
+      <p class="page-hero__lead">
+        다시 만나서 반가워요. 나의 성장 여정을 이어가세요.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== LOGIN FORM ============== -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="auth-wrap">
+        <form class="contact-form auth-form" id="loginForm">
+          <label>이메일 / Email <input type="email" name="email" required autocomplete="email" placeholder="you@email.com" /></label>
+          <label>비밀번호 / Password <input type="password" name="password" required autocomplete="current-password" placeholder="비밀번호를 입력해주세요" /></label>
+          <button type="submit" class="btn btn--dark">로그인 →</button>
+          <p class="auth-alt">아직 계정이 없으신가요? <a href="signup.html">회원가입</a></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER (shared) ============== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Life Code Company Logo" class="logo-img"
+            style="height: 38px;" /></a>
+        <p class="footer__tag">One person's possibility, the world rewritten</p>
+        <a class="footer__cta" href="contact.html">문의하기 →</a>
+      </div>
+      <div class="footer__cols">
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li>사업자등록번호 102-21-35488</li>
+            <li>서울특별시 마포구 토정로5길 30,<br />1동 지층 2호(합정동)</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="mailto:lifecodecompany.korea@gmail.com">lifecodecompany.korea@gmail.com</a></li>
+            <li>HQ — Seoul, South Korea</li>
+            <li>Mon–Fri 10:00–18:00 KST</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Global Network</h5>
+          <ul>
+            <li>Atlanta · USA</li>
+            <li>Frankfurt · Germany</li>
+            <li>Paris · France</li>
+            <li>Prague · Czech Republic</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <div class="container">
+        <small>© 2026 Life Code Company. All rights reserved.</small>
+        <div class="meta">
+          <a class="footer-link" href="privacy.html"><small>Privacy</small></a>
+          <a class="footer-link" href="terms.html"><small>Terms</small></a>
+          <small>Supporting UN SDGs 4·11·16·17</small>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script type="module" src="assets/js/auth.js"></script>
+</body>
+
+</html>
