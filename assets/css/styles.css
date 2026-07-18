@@ -1874,3 +1874,35 @@ a.parchive-card:hover .parchive-card__cap strong { color: var(--gold); }
 /* 마키 2열 — 아래 줄은 반대 방향 */
 .poster-marquee + .poster-marquee { padding-top: 0; }
 .poster-marquee--reverse .poster-marquee__track { animation-direction: reverse; }
+
+/* =========================================================
+   MOBILE OPTIMIZATION (≤700px) — 카드 여백·타이포 축소
+   ========================================================= */
+@media (max-width: 700px) {
+  .section { padding: 56px 0; }
+  .section-head { margin-bottom: 34px; }
+
+  /* 핵심 가치 카드 */
+  .value-card { padding: 22px 20px 24px; }
+  .value-card h3 { font-size: 18px; margin: 10px 0 4px; }
+  .value-card .kr { margin-bottom: 8px; font-size: 12.5px; }
+  .value-card p { font-size: 13.5px; }
+
+  /* 서비스 카드 */
+  .svc-card { padding: 24px 20px 22px; min-height: 0; }
+  .svc-card h3 { margin-top: 10px; }
+
+  /* 통계 */
+  .istat { padding: 18px 0; }
+
+  /* 프로그램 아카이브 카드 */
+  .parchive-card__cap { padding: 12px 14px 14px; }
+  .parchive-card__cap strong { font-size: 13.5px; }
+
+  /* 프로그램 상세 */
+  .pdetail__meta { grid-template-columns: 1fr; gap: 14px; padding: 18px 0; }
+  .pdetail__poster { padding: 10px; }
+
+  /* 페이지 내비 카드 */
+  .page-nav__cell { padding: 30px 22px; }
+}
