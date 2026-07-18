@@ -1722,7 +1722,7 @@ a.parchive-card:hover .parchive-card__cap strong { color: var(--gold); }
 }
 .hero-photo__overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(6,8,12,.55) 0%, rgba(6,8,12,.35) 45%, rgba(6,8,12,.65) 100%);
+  background: linear-gradient(180deg, rgba(6,8,12,.72) 0%, rgba(6,8,12,.58) 45%, rgba(6,8,12,.8) 100%);
 }
 .hero-photo__inner { position: relative; z-index: 1; }
 .hero-photo__eyebrow {
@@ -1807,26 +1807,39 @@ a.parchive-card:hover .parchive-card__cap strong { color: var(--gold); }
    ========================================================= */
 .popup-layer {
   position: fixed;
-  top: 96px; left: 24px; right: 24px;
+  inset: 0;
   z-index: 90;
-  display: flex; gap: 16px; align-items: flex-start;
-  max-height: calc(100vh - 140px);
-  pointer-events: none;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(10, 14, 20, .62);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 }
+.popup-layer[hidden] { display: none; }
+
+/* 두 팝업을 같은 칸에 겹쳐 쌓는다 — 앞장을 닫으면 뒷장이 올라온다 */
 .popup {
-  flex: 0 0 auto;
-  width: min(400px, calc(100vw - 32px));
-  max-height: calc(100vh - 140px);
+  grid-area: 1 / 1;
   display: flex; flex-direction: column;
+  width: auto;
+  max-width: min(400px, calc(100vw - 32px));
+  min-width: min(280px, calc(100vw - 32px));
   background: var(--paper);
   border: 1px solid var(--line);
-  box-shadow: 0 30px 70px rgba(10,14,20,.3);
-  pointer-events: auto;
+  box-shadow: 0 30px 70px rgba(10,14,20,.45);
+  transition: transform .32s ease, opacity .32s ease;
 }
 .popup[hidden] { display: none; }
-.popup--right { margin-left: auto; }
-@media (max-width: 900px) {
-  .popup--right { margin-left: 0; }
+.popup--front { z-index: 2; }
+.popup--back {
+  z-index: 1;
+  transform: translateY(-18px) scale(.95);
+  opacity: .9;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .popup { transition: none; }
 }
 .popup__body { overflow-y: auto; }
 .popup__head { padding: 24px 26px 20px; }
@@ -1842,7 +1855,16 @@ a.parchive-card:hover .parchive-card__cap strong { color: var(--gold); }
   font-size: 20px; font-weight: 700; letter-spacing: -.015em;
 }
 .popup__desc { margin: 0; font-size: 13.5px; line-height: 1.75; color: var(--fg-2); }
-.popup__img { display: block; width: 100%; height: auto; }
+/* 이미지가 항상 화면 안에 들어오도록 — 팝업 폭이 이미지 비율을 따라 줄어든다.
+   빼는 값: 레이어 패딩 32 + 하단 바 48 + 뒷장이 위로 삐져나올 자리 24 */
+.popup__img {
+  display: block;
+  margin: 0 auto;
+  width: auto; height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 104px);
+  max-height: calc(100dvh - 104px);
+}
 .popup__bar {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   padding: 12px 16px;
@@ -1860,15 +1882,10 @@ a.parchive-card:hover .parchive-card__cap strong { color: var(--gold); }
   white-space: nowrap;
 }
 .popup__close:hover { color: var(--gold); }
-@media (max-width: 900px) {
-  .popup-layer {
-    top: 84px; left: 16px; right: 16px;
-    max-width: none;
-    flex-direction: column;
-    overflow-y: auto;
-  }
-  .popup { width: 100%; max-height: none; }
-  .popup__body { max-height: 60vh; }
+@media (max-width: 480px) {
+  .popup__bar { padding: 10px 12px; gap: 8px; }
+  .popup__today { font-size: 11.5px; }
+  .popup__close { font-size: 11.5px; }
 }
 
 /* 마키 2열 — 아래 줄은 반대 방향 */

@@ -29,7 +29,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&family=Italiana&family=Italianno&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=5" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=7" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -127,8 +127,8 @@
     <div class="container hero-photo__inner">
       <p class="hero-photo__eyebrow">Life Code Company는</p>
       <h1 class="hero-photo__title">
-        청년의 자기 발견과 주체적 성장을 위해<br />
-        <strong>&ldquo;라이프 컨설팅 &amp; 멘토링&rdquo;</strong> 을 실천합니다.
+        글로벌 인재 양성을 위해<br />
+        <strong>자기 발견과 주체적 성장</strong>을 지원합니다.
       </h1>
     </div>
 
@@ -432,33 +432,20 @@
   </footer>
 
   <!-- ============== NOTICE POPUPS ============== -->
-  <div class="popup-layer" id="popupLayer">
-    <div class="popup" data-key="ge-cohort-2026" role="dialog" aria-modal="false" aria-labelledby="popupTitle1" hidden>
+  <div class="popup-layer" id="popupLayer" hidden>
+    <div class="popup" data-key="ge-cohort-2026" role="dialog" aria-modal="true" aria-label="Global Exchange Cohort 2026 모집 마감" hidden>
       <div class="popup__body">
-        <div class="popup__head">
-          <h2 class="popup__title" id="popupTitle1">Global Exchange Cohort 2026 마감</h2>
-        </div>
-        <img class="popup__img" src="assets/images/popup-01.jpeg" alt="Global Exchange Cohort 2026 포스터" />
+        <img class="popup__img" src="assets/images/popup-01.jpeg" alt="Global Exchange Cohort 2026 포스터 — 뜨거운 관심 속에 모집이 마감되었습니다. 신청해주신 모든 분께 감사드립니다." />
       </div>
       <div class="popup__bar">
         <label class="popup__today"><input type="checkbox" /> 오늘 하루 이 창을 띄우지 않음</label>
-        <button type="button" class="popup__close">✕ 닫음</button>
+        <button type="button" class="popup__close">✕ 닫기</button>
       </div>
     </div>
 
-    <div class="popup popup--right" data-key="workbook-soldout" role="dialog" aria-modal="false" aria-labelledby="popupTitle2" hidden>
+    <div class="popup" data-key="workbook-soldout" role="dialog" aria-modal="true" aria-label="L.I.F.E Discovery Workbook 완판 안내" hidden>
       <div class="popup__body">
-        <div class="popup__head">
-          <span class="popup__badge">SOLD OUT</span>
-          <h2 class="popup__title" id="popupTitle2">L.I.F.E Discovery Workbook 완판 안내</h2>
-          <p class="popup__desc">
-            100부가 전량 소진되었습니다.<br />
-            보내주신 깊은 관심과 성원에 진심으로 감사드립니다.<br /><br />
-            미처 함께하지 못하신 분들께는 너른 양해를 부탁드리며,<br />
-            10월 초, 보다 정성껏 준비하여 재출간으로 다시 인사드리겠습니다.
-          </p>
-        </div>
-        <img class="popup__img" src="assets/images/popup-02.jpeg" alt="L.I.F.E Discovery Workbook" />
+        <img class="popup__img" src="assets/images/popup-02.jpeg" alt="L.I.F.E Discovery Workbook 완판 안내 — 100부가 전량 소진되었습니다. 10월 초 재출간으로 다시 인사드리겠습니다." />
       </div>
       <div class="popup__bar">
         <label class="popup__today"><input type="checkbox" /> 오늘 하루 이 창을 띄우지 않음</label>
@@ -470,14 +457,46 @@
   <script>
     (function () {
       var today = new Date().toISOString().slice(0, 10);
-      document.querySelectorAll('#popupLayer .popup').forEach(function (p) {
-        var key = 'lccPopupHide_' + p.dataset.key;
-        if (localStorage.getItem(key) !== today) p.hidden = false;
-        p.querySelector('.popup__close').addEventListener('click', function () {
-          if (p.querySelector('.popup__today input').checked) localStorage.setItem(key, today);
-          p.hidden = true;
+      var layer = document.getElementById('popupLayer');
+
+      // 열려 있는 팝업 중 맨 앞장만 조작 가능하게 두고, 나머지는 뒤에 겹쳐 놓는다.
+      // 열린 게 하나도 없으면 딤 배경까지 걷어낸다.
+      function syncStack() {
+        var open = Array.prototype.slice.call(layer.querySelectorAll('.popup:not([hidden])'));
+        open.forEach(function (p, i) {
+          p.classList.toggle('popup--front', i === 0);
+          p.classList.toggle('popup--back', i !== 0);
+          p.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
         });
+        layer.hidden = open.length === 0;
+        document.body.style.overflow = layer.hidden ? '' : 'hidden';
+      }
+
+      // 한 번에 맨 앞장 하나씩만 닫는다
+      function closeFront() {
+        var front = layer.querySelector('.popup:not([hidden])');
+        if (!front) return;
+        if (front.querySelector('.popup__today input').checked) {
+          localStorage.setItem('lccPopupHide_' + front.dataset.key, today);
+        }
+        front.hidden = true;
+        syncStack();
+      }
+
+      layer.querySelectorAll('.popup').forEach(function (p) {
+        if (localStorage.getItem('lccPopupHide_' + p.dataset.key) !== today) p.hidden = false;
+        p.querySelector('.popup__close').addEventListener('click', closeFront);
       });
+
+      // 어두운 배경 클릭 / ESC — 팝업 내부 클릭은 제외
+      layer.addEventListener('click', function (e) {
+        if (e.target === layer) closeFront();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !layer.hidden) closeFront();
+      });
+
+      syncStack();
     })();
   </script>
 
