@@ -1893,7 +1893,8 @@ a.parchive-card:hover .parchive-card__cap strong { color: var(--gold); }
   .svc-card h3 { margin-top: 10px; }
 
   /* 통계 */
-  .istat { padding: 18px 0; }
+  .istat { padding: 20px 22px 22px; }
+  .istat p { margin-top: 5px; }
 
   /* 프로그램 아카이브 카드 */
   .parchive-card__cap { padding: 12px 14px 14px; }
